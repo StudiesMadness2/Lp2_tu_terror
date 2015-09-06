@@ -42,6 +42,13 @@ public class Juego {
 	//	juego.PantallaInicial();
 		ClasePrueba cl = new ClasePrueba() ; 
 		cl.prueba();
+		System.out.println("Prueba de Merge 1 ");
+		System.out.println("Prueba de Merge 2 ");
+		System.out.println("Prueba de Merge 3 ");
+		System.out.println("Prueba de Merge 4 ");
+		System.out.println("Prueba de Merge 5 ");
+		System.out.println("Prueba de Merge 6 ");
+		
 		
     }
 }

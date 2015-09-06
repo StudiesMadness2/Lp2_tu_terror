@@ -34,6 +34,11 @@ public class Juego {
 	
 	public void toma(){
 		System.out.println("TOMA");
+		System.out.println("TOMA");
+		System.out.println("TOMA");
+		System.out.println("TOMA");
+		System.out.println("TOMA");
+		System.out.println("TOMA");
 	}
 	
 	public static void main(String[] parametro) {

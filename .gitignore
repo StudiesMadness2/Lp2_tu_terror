@@ -4,3 +4,7 @@
 /Objeto.class
 /Celda.class
 /Personaje.class
+/GestorDeMapas.class
+/Mapa.class
+/Rendenrizador.class
+/InterpreteComandos.class

@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Juego {
 	private Scanner teclado;
 	private int opcion;
+	private int salida = 0;
 	private String linea;
 	
 	public void PantallaInicial(){
@@ -23,26 +24,20 @@ public class Juego {
 				NuevoJuego();
 			}
 			else if(opcion == 2){
-				break;
+				System.out.println("Seguro que quiere salir? ");
+				System.out.println("1) Sí");
+				System.out.println("2) No");
+								
+				salida = teclado.nextInt();
+				
+				if(salida == 1)
+					break;
 			}
 		}
 	}
 	
 	public void NuevoJuego(){
 		System.out.println("Escriba su nombre: ");
-	}
-	
-	public void toma(){
-		System.out.println("TOMA");
-
-		System.out.println("TOMA");
-		System.out.println("TOMA");
-		System.out.println("TOMA");
-		System.out.println("TOMA");
-		System.out.println("TOMA");
-		System.out.println("Amigo :#");
-		System.out.println("GITHUB TU TERROR :#");
-
 	}
 	
 	public static void main(String[] parametro) {

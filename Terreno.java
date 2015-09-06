@@ -1,8 +1,7 @@
 
 public class Terreno {
-//	letra Actual
+	private Celda celda;
 //	visibilidad Activo 	
 //	Traspasabilidad
-//	posicion x , y 
 
 }

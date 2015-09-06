@@ -32,6 +32,10 @@ public class Juego {
 		System.out.println("Escriba su nombre: ");
 	}
 	
+	public void toma(){
+		System.out.println("TOMA");
+	}
+	
 	public static void main(String[] parametro) {
 		Juego juego = new Juego();
 		

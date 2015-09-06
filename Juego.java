@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class Juego {
@@ -34,7 +35,9 @@ public class Juego {
 	public static void main(String[] parametro) {
 		Juego juego = new Juego();
 		
-		juego.PantallaInicial();
+	//	juego.PantallaInicial();
+		ClasePrueba cl = new ClasePrueba() ; 
+		cl.prueba();
 		
     }
 }

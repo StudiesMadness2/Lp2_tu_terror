@@ -48,8 +48,10 @@ public class Juego {
 		cl.prueba();
 		//PRUEBA DE MAPA
 		Mapa map = new Mapa();
-		map.GestorMapa(0);
+		map.GestorMapa(2);
 		map.ImprimirMapa();
+		Personaje p = new Personaje("Brayan", 10, 190, 0 , 3, 'A', true, false);
+		System.out.print(p.getEstadoActual());
 		
     }
 }

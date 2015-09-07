@@ -1,8 +1,9 @@
 
 public class Mapa {
+	
 	private Celda [][] mapa = new Celda[12][16];
 	
-	public Mapa(){
+	public Mapa(){		
 		for(int i=0;i<12;i++){
 			for(int j=0;j<16;j++){
 				mapa[i][j] = new Celda(' ', i, j);
@@ -16,9 +17,9 @@ public class Mapa {
 	
 	public void GestorMapa(int indice){
 		switch (indice){
-		case 0:
+		case 0:						    			
 				for(int i=0;i<12;i++){
-					for(int j=0;j<16;j++){
+					for(int j=0;j<16;j++){						
 						if(i>2 && i<7) {
 							mapa[i][j].setCaracter('N');
 							if(j==0 && i==5) mapa[i][j].setCaracter('B');

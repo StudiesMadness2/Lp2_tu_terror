@@ -1,5 +1,6 @@
 
 public class Enemigo {
+	private Celda celda;
 //	aparecen con una precondicion 
 //	quitan puntos de vida
 //	sprite

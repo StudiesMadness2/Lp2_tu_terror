@@ -46,6 +46,10 @@ public class Juego {
 	//	juego.PantallaInicial();
 		ClasePrueba cl = new ClasePrueba() ; 
 		cl.prueba();
+		//PRUEBA DE MAPA
+		Mapa map = new Mapa();
+		map.GestorMapa(0);
+		map.ImprimirMapa();
 		
     }
 }

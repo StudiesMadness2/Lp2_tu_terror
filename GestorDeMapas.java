@@ -1,7 +1,5 @@
 
 public class GestorDeMapas {
-
-private int numeroMapas;
 	
 	// crea mapa (y)
 	public void GestorMapa(Mapa mapa,int indice){

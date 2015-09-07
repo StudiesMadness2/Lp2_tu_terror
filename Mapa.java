@@ -9,6 +9,11 @@ public class Mapa {
 			}
 		}
 	}
+	
+	public void establecerCaracter(int i, int j, char x){
+		mapa[i][j].setCaracter(x);
+	}
+	
 	public void GestorMapa(int indice){
 		switch (indice){
 		case 0:

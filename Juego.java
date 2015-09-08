@@ -29,7 +29,7 @@ public class Juego {
 		 }
 		 int indice = 0 ;
 		 for (Mapa miMapa : listMapas){
-			 gestorMapa.GestorMapa(miMapa, indice++);
+			 gestorMapa.crearMapa(miMapa, indice++);
 		 }
 		 mapaActual =  listMapas.get(0);  // puede ser no necesario 		 
 	}
@@ -52,9 +52,9 @@ public class Juego {
 		System.out.println("Felicitaciones, eres el mejor. Terminaste el juego Mi estimado LOL by --BrayanRP");		
 	}
 	
-	public void Historia_4(){
+	public void Historia_3(){
 		String linea;
-		System.out.println("Bienvenido a Historia_4  (presione enter para continuar)");
+		System.out.println("Bienvenido a Historia_#  (presione enter para continuar)");
 		linea = teclado.next();
 		FinDelJuego();
 	}
@@ -64,16 +64,16 @@ public class Juego {
 		System.out.println("Bienvenido al Nivel_2  (escriba un numero para continuar)");
 		entero = teclado.nextInt();
 		if(entero != nextLevel){
-			Historia_4();
+			Historia_3();
 		}
 		else{
 			System.out.println("Game Over");			
 		}
 	}
 	
-	public void Historia_3(){
+	public void Historia_2(){
 		String linea;
-		System.out.println("Bienvenido a Historia_3  (presione enter para continuar)");
+		System.out.println("Bienvenido a Historia_2  (presione enter para continuar)");
 		linea = teclado.next();
 		 Nivel_2();
 	}
@@ -83,7 +83,7 @@ public class Juego {
 		System.out.println("Bienvenido al Nivel_1  (escriba un numero para continuar)");
 		entero = teclado.nextInt();
 		if(entero != nextLevel){
-			 Historia_3();
+			 Historia_2();
 		}
 		else{
 			System.out.println("Game Over");			

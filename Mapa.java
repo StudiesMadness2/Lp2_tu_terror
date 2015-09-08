@@ -1,4 +1,4 @@
-
+	
 public class Mapa {
 	
 	private Celda [][] mapa = new Celda[12][16];

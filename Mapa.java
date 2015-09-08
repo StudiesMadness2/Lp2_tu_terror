@@ -22,7 +22,7 @@ public class Mapa {
 					for(int j=0;j<16;j++){						
 						if(i>2 && i<7) {
 							mapa[i][j].setCaracter('N');
-							if(j==0 && i==5) mapa[i][j].setCaracter('B');
+							//if(j==0 && i==5) mapa[i][j].setCaracter('B');
 							if(j==5 && i==5) mapa[i][j].setCaracter('D');
 							if(j==12) mapa[i][j].setCaracter('T');
 							else {
@@ -32,7 +32,7 @@ public class Mapa {
 						if(i==7) mapa[i][j].setCaracter('p');
 						if(i>7){
 							mapa[i][j].setCaracter('S');
-							if(i==10 && j==0) mapa[i][j].setCaracter('A');
+							//if(i==10 && j==0) mapa[i][j].setCaracter('A');
 							if(i==9 && j==5) mapa[i][j].setCaracter('D');
 							if(i==9 && j==11) mapa[i][j].setCaracter('C');
 						}
@@ -55,8 +55,8 @@ public class Mapa {
 							if(i>9) mapa[i][j].setCaracter('S');
 							if(j==6 && i>6)  mapa[i][j].setCaracter('g');
 						}
-						if(j==0 && i==7) mapa[i][j].setCaracter('B');
-						if(j==0 && i==11) mapa[i][j].setCaracter('A');
+						//if(j==0 && i==7) mapa[i][j].setCaracter('B');
+						//if(j==0 && i==11) mapa[i][j].setCaracter('A');
 						if((j==5 || j==10) && (i==8 || i==10)) mapa[i][j].setCaracter('D');
 					}
 				}
@@ -66,7 +66,7 @@ public class Mapa {
 					for(int j=0;j<16;j++){
 						if(i>0 && i<6){
 							mapa[i][j].setCaracter('N');
-							if(i==5 && j==0) mapa[i][j].setCaracter('B');
+							//if(i==5 && j==0) mapa[i][j].setCaracter('B');
 							if(i==3 && j==3) mapa[i][j].setCaracter('C');
 							if(j==9 && i==5) mapa[i][j].setCaracter('D');
 							if(j==4) mapa[i][j].setCaracter('h');
@@ -81,7 +81,7 @@ public class Mapa {
 						}
 						if(i>6){
 							mapa[i][j].setCaracter('S');
-							if(i==10 && j==0) mapa[i][j].setCaracter('A');
+							//if(i==10 && j==0) mapa[i][j].setCaracter('A');
 							if(i==9 && j==3) mapa[i][j].setCaracter('C');
 							if(j==9 && i==7) mapa[i][j].setCaracter('D');
 							if(j==4) mapa[i][j].setCaracter('h');
@@ -92,15 +92,6 @@ public class Mapa {
 					}
 				}
 		        break;
-		}
-	}
-	
-	public void ImprimirMapa(){
-		for(int i=0;i<12;i++){
-			for(int j=0;j<16;j++){
-				System.out.print(mapa[i][j].getCaracter());
-			}
-			System.out.println();
 		}
 	}
 }

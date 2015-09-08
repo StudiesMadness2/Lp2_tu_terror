@@ -1,12 +1,55 @@
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Juego {
-	int nextLevel = 0;
+	private int nextLevel ;
 	private Scanner teclado;
 	
+	private Personaje personajeA ; // EL Cuyo  
+	private Personaje personajeB ;  // La Cuya
+	private ArrayList <PersonajeSecundario> listPersonajesSecundarios ; 
+	private ArrayList <Objeto> listObjetos ; 
+	private ArrayList <Mapa> listMapas ; 
+	private GestorDeMapas gestorMapa ;
+	private InterpreteComandos interpreteComando ; 
+	private Rendenrizador renderizador ; 
+	private Mapa  mapaActual ; 
+	
+	public Juego(int numeroMapas , int numerosDeObjetos , int numPersSecund){
+		  
+		 nextLevel =  0  ;
+		 listObjetos  = new  ArrayList <Objeto>(numerosDeObjetos) ; 
+		 listPersonajesSecundarios = new ArrayList <PersonajeSecundario>(numPersSecund) ;
+		 listMapas = new ArrayList <Mapa>(numeroMapas) ;
+		 interpreteComando = new InterpreteComandos() ;		 
+		 renderizador = new Rendenrizador() ;
+		 gestorMapa = new GestorDeMapas();		 		
+		 for(int i = 0 ; i <3 ; i++ ){
+			 listMapas.add(new Mapa());			 
+		 }
+		 int indice = 0 ;
+		 for (Mapa miMapa : listMapas){
+			 gestorMapa.GestorMapa(miMapa, indice++);
+		 }
+		 mapaActual =  listMapas.get(0);  // puede ser no necesario 		 
+	}
+	
+	public void iniciarPersonajes(Personaje a , Personaje b){
+		personajeA = a  ; 
+		personajeB = b ; 
+		
+	}
+	public void iniciarPersonajesSecundarios(){
+		// Falta ; 
+		
+	}
+	public void iniciarObjetos(){
+		// falta ; 
+		
+	}
+	
 	public void FinDelJuego(){
-		System.out.println("Felicitaciones, eres el mejor. Terminaste el juego");
+		System.out.println("Felicitaciones, eres el mejor. Terminaste el juego Mi estimado LOL by --BrayanRP");		
 	}
 	
 	public void Historia_4(){
@@ -24,7 +67,7 @@ public class Juego {
 			Historia_4();
 		}
 		else{
-			System.out.println("Game Over");
+			System.out.println("Game Over");			
 		}
 	}
 	
@@ -32,7 +75,7 @@ public class Juego {
 		String linea;
 		System.out.println("Bienvenido a Historia_3  (presione enter para continuar)");
 		linea = teclado.next();
-		Nivel_2();
+		 Nivel_2();
 	}
 	
 	public void Nivel_1(){
@@ -40,47 +83,41 @@ public class Juego {
 		System.out.println("Bienvenido al Nivel_1  (escriba un numero para continuar)");
 		entero = teclado.nextInt();
 		if(entero != nextLevel){
-			Historia_3();
+			 Historia_3();
 		}
 		else{
-			System.out.println("Game Over");
+			System.out.println("Game Over");			
 		}
 	}
-	
-	public void Historia_2(){
-		String linea;
-		System.out.println("Bienvenido a Historia_2  (presione enter para continuar)");
-		linea = teclado.next();
-		Nivel_1();
-	}
-	
+		
 	public void Tutorial(){
 		int entero;
 		System.out.println("Bienvenido al tutorial  (escriba un numero para continuar)");
 		entero = teclado.nextInt();
 		if(entero != nextLevel){
-			Historia_2();
+			Nivel_1();
 		}
 		else{
-			System.out.println("Game Over");
+			System.out.println("Game Over");			 
 		}
 	}
 	
 	public void Historia_1(){
 		String linea;
-		System.out.println("Bienvenido a Historia_1  (presione enter para continuar)");
-		linea = teclado.next();
+		System.out.println("Bienvenido a Historia_1  (presione cualquier numero y enter para continuar)");		
+		linea = teclado.next();		
 		Tutorial();
 	}
-	
-	public void NuevoJuego(){
+		
+	public void NuevoJuego(Personaje perA, Personaje perB){
 		String linea;
 		System.out.println("Escriba su nombre: ");
-		linea = teclado.next();
+		linea = teclado.next();		
+		System.out.println("Wecome to my world my yangy friend " + linea);
 		Historia_1();
 	}
 	
-	public void PantallaInicial(){
+	public void PantallaInicial(Personaje perA, Personaje perB){
 		
 		int opcion;
 		int salida = 0;
@@ -97,7 +134,7 @@ public class Juego {
 			opcion = teclado.nextInt();
 			
 			if(opcion == 1){
-				NuevoJuego();
+				NuevoJuego(perA , perB);	
 			}
 			else if(opcion == 2){
 				System.out.println("Seguro que quiere salir? ");
@@ -105,29 +142,46 @@ public class Juego {
 				System.out.println("2) No");
 								
 				salida = teclado.nextInt();
-				
-				if(salida == 1)
+				if(salida == 1)   // Si lo cambiamo este (una linea mas arriba regresa al menu princupal)
 					break;
-			}
+			}			
 		}
+		System.out.println("Espero que Regrese Pronto mi estimado LOL by Brayan XD");
 	}
 	
 	
 	
 	public static void main(String[] parametro) {
-		Juego juego = new Juego();
 		
-		juego.PantallaInicial();
-//		ClasePrueba cl = new ClasePrueba() ; 
-//		cl.prueba();
-		//PRUEBA DE MAPA
-//		Mapa map = new Mapa();
-//		map.GestorMapa(2);
-//		map.ImprimirMapa();
-//		Personaje p = new Personaje("Brayan", 10, 190, 0 , 3, 'A', true, false);
-//		System.out.print(p.getEstadoActual());
+		int i ; 
+		Personaje brayan = new Personaje("Brayan", 10, 190, 11 , 0, 'A', true, false);
+ 	    System.out.print(brayan.getEstadoActual());
+ 	    
+ 	    Personaje brando = new Personaje("Brando", 10, 190, 6 	, 0, 'B', true, false);
+ 	    System.out.print(brando.getEstadoActual());
+ 	    
+ 	    Juego nuevoJuego = new Juego(10, 50,40) ; 
+ 	    nuevoJuego.iniciarPersonajes(brayan, brando);
+ 	    nuevoJuego.PantallaInicial( brayan , brando );
+ 	   
+ 	    
 		
     }
-}
 
+	public Personaje getPersonajeA() {
+		return personajeA;
+	}
+
+	public void setPersonajeA(Personaje personajeA) {
+		this.personajeA = personajeA;
+	}
+
+	public Personaje getPersonajeB() {
+		return personajeB;
+	}
+
+	public void setPersonajeB(Personaje personajeB) {
+		this.personajeB = personajeB;
+	}
+}
 

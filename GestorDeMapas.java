@@ -9,7 +9,7 @@ public class GestorDeMapas {
 					for(int j=0;j<16;j++){
 						if(i>2 && i<7) {
 							mapa.establecerCaracter(i, j, 'N');
-							if(j==0 && i==5) mapa.establecerCaracter(i, j, 'B');
+							//if(j==0 && i==5) mapa.establecerCaracter(i, j, 'B');
 							if(j==5 && i==5) mapa.establecerCaracter(i, j, 'D');
 							if(j==12) mapa.establecerCaracter(i, j, 'T');
 							else {
@@ -19,7 +19,7 @@ public class GestorDeMapas {
 						if(i==7) mapa.establecerCaracter(i, j, 'p');
 						if(i>7){
 							mapa.establecerCaracter(i, j, 'S');
-							if(i==10 && j==0) mapa.establecerCaracter(i, j, 'A');
+							//if(i==10 && j==0) mapa.establecerCaracter(i, j, 'A');
 							if(i==9 && j==5) mapa.establecerCaracter(i, j, 'D');
 							if(i==9 && j==11) mapa.establecerCaracter(i, j, 'C');
 						}
@@ -42,8 +42,8 @@ public class GestorDeMapas {
 							if(i>9) mapa.establecerCaracter(i, j, 'S');
 							if(j==6 && i>6)  mapa.establecerCaracter(i, j, 'g');
 						}
-						if(j==0 && i==7) mapa.establecerCaracter(i, j, 'B');
-						if(j==0 && i==11) mapa.establecerCaracter(i, j, 'A');
+						//if(j==0 && i==7) mapa.establecerCaracter(i, j, 'B');
+						//if(j==0 && i==11) mapa.establecerCaracter(i, j, 'A');
 						if((j==5 || j==10) && (i==8 || i==10)) mapa.establecerCaracter(i, j, 'D');
 					}
 				}
@@ -53,7 +53,7 @@ public class GestorDeMapas {
 					for(int j=0;j<16;j++){
 						if(i>0 && i<6){
 							mapa.establecerCaracter(i, j, 'N');
-							if(i==5 && j==0) mapa.establecerCaracter(i, j, 'B');
+							//if(i==5 && j==0) mapa.establecerCaracter(i, j, 'B');
 							if(i==3 && j==3) mapa.establecerCaracter(i, j, 'C');
 							if(j==9 && i==5) mapa.establecerCaracter(i, j, 'D');
 							if(j==4) mapa.establecerCaracter(i, j, 'h');
@@ -68,7 +68,7 @@ public class GestorDeMapas {
 						}
 						if(i>6){
 							mapa.establecerCaracter(i, j, 'S');
-							if(i==10 && j==0) mapa.establecerCaracter(i, j, 'A');
+							//if(i==10 && j==0) mapa.establecerCaracter(i, j, 'A');
 							if(i==9 && j==3) mapa.establecerCaracter(i, j, 'C');
 							if(j==9 && i==7) mapa.establecerCaracter(i, j, 'D');
 							if(j==4) mapa.establecerCaracter(i, j, 'h');

@@ -1,6 +1,6 @@
 	
 public class Mapa {
-	
+	private AccionesEspeciales acciones;
 	private Celda [][] mapa = new Celda[12][16];
 	
 	public Mapa(){		

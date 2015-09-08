@@ -2,7 +2,7 @@
 public class GestorDeMapas {
 	
 	// crea mapa (y)
-	public void GestorMapa(Mapa mapa,int indice){
+	public void cSrearMapa(Mapa mapa,int indice){
 		switch (indice){
 		case 0:
 				for(int i=0;i<12;i++){

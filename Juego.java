@@ -54,7 +54,7 @@ public class Juego {
 	
 	public void Historia_3(){
 		String linea;
-		System.out.println("Bienvenido a Historia_#  (presione enter para continuar)");
+		System.out.println("Bienvenido a Historia_3  (presione enter para continuar)");
 		linea = teclado.next();
 		FinDelJuego();
 	}

@@ -3,21 +3,28 @@ import java.io.Console;
 public class Rendenrizador {
 	
 	//Imprime las celdas y si alguno de los cuys está ubicado en la celda lo imprime
-	public void ImprimirMapa(Celda[][] mapa, Personaje cuy1, PersonajeSecundario cuy2){
+	public void ImprimirMapa(Mapa mapa, Personaje cuy1, Personaje cuy2){
 		int flagDuo=0;
+		
+		System.out.println(cuy1.getPosX() );
+		System.out.println(cuy1.getPosY() );
+		System.out.println(cuy2.getPosX() );
+		System.out.println(cuy2.getPosY() );
+		System.out.println("=================" );
 		for(int i=0;i<12;i++){
 			for(int j=0;j<16;j++){
-				if(cuy1.getPosX()==i && cuy1.getPosY()==j) {
-					System.out.print('A');
-					if (mapa[i][j].getCaracter()=='D') flagDuo++;
-				}
-				else {
+				if ((cuy1.getPosX()==i && cuy1.getPosY()==j) ||(cuy2.getPosX()==i && cuy2.getPosY()==j)){ 
+					if(cuy1.getPosX()==i && cuy1.getPosY()==j) {
+						System.out.print('A');
+						if (mapa.obtenerCaracter(i,j)=='D') flagDuo++;
+					}					    
 					if(cuy2.getPosX()==i && cuy2.getPosY()==j) {
 						System.out.print('B');
-						if (mapa[i][j].getCaracter()=='D') flagDuo++;
-					}
-					else System.out.print(mapa[i][j].getCaracter());
+						if (mapa.obtenerCaracter(i,j)=='D') flagDuo++;					
+					}			
 				}
+				else System.out.print(mapa.obtenerCaracter(i,j));								
+			
 			}
 			System.out.println();
 		}
@@ -29,7 +36,7 @@ public class Rendenrizador {
 		}
 	}
 	//La impresion del duo
-	public void ImprimirDuo(Celda[][]mapa, Personaje cuy1, PersonajeSecundario cuy2){
+	public void ImprimirDuo(Mapa mapa, Personaje cuy1, PersonajeSecundario cuy2){
 		//DUO - POSICION 2
 		cuy1.setPosX(5);
 		cuy1.setPosY(7);

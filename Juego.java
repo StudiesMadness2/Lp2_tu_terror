@@ -23,6 +23,8 @@ public class Juego {
 		 listMapas = new ArrayList <Mapa>(numeroMapas) ;
 		 interpreteComando = new InterpreteComandos() ;		 
 		 renderizador = new Rendenrizador() ;
+		 
+		 
 		 gestorMapa = new GestorDeMapas();		 		
 		 for(int i = 0 ; i <3 ; i++ ){
 			 listMapas.add(new Mapa());			 
@@ -31,7 +33,16 @@ public class Juego {
 		 for (Mapa miMapa : listMapas){
 			 gestorMapa.crearMapa(miMapa, indice++);
 		 }
-		 mapaActual =  listMapas.get(0);  // puede ser no necesario 		 
+			 // miMapa.ImprimirMapa();
+		 
+		 
+		 mapaActual = new Mapa();
+		 //gestorMapa.crearMapa(mapaActual, 0);
+		 mapaActual =  listMapas.get(0);  // puede ser no necesario
+		 mapaActual.ImprimirMapa();
+		 
+		 
+				 		 
 	}
 	
 	public void iniciarPersonajes(Personaje a , Personaje b){
@@ -89,12 +100,39 @@ public class Juego {
 			System.out.println("Game Over");			
 		}
 	}
-		
-	public void Tutorial(){
-		int entero;
+	// X es filas y Y columna   
+	public boolean movimientoValido(Personaje a ,Personaje b , int direccion , Mapa mapa){
+		int xx =0 , yy =0; 
+		if( direccion == 1 || direccion == 7){ 			 
+			xx = -1 ; yy = 0 ; 
+		}else if(direccion == 2 || direccion == 8){
+		//	xx == xx+1 ; yy=0;			
+		}else{
+			
+		}			
+		return false ; 
+	}
+	public void Tutorial(Personaje perA , Personaje perB){
+		int entero, direccion;
+		char entrada ; 
 		System.out.println("Bienvenido al tutorial  (escriba un numero para continuar)");
 		entero = teclado.nextInt();
 		if(entero != nextLevel){
+			while(true){
+				// Fin de nivel
+				if (perA.getPosY() == 15 && perB.getPosY() == 15) break ;
+			renderizador.ImprimirMapa(listMapas.get(0), perA, perB);
+			entrada = teclado.next().charAt(0); 
+			direccion = interpreteComando.esTeclaValida(entrada);
+			System.out.println(direccion);
+			if (movimientoValido(perA , perB , direccion , listMapas.get(0))){
+				
+				
+			}
+ 			// si el moviemenoto es valido 
+				   // si es  p   o   V no puede pasar 
+					// si es n   o    s  normal avanza
+			}						
 			Nivel_1();
 		}
 		else{
@@ -102,11 +140,11 @@ public class Juego {
 		}
 	}
 	
-	public void Historia_1(){
+	public void Historia_1(Personaje perA , Personaje perB){		
 		String linea;
 		System.out.println("Bienvenido a Historia_1  (presione cualquier numero y enter para continuar)");		
 		linea = teclado.next();		
-		Tutorial();
+		Tutorial(perA , perB);
 	}
 		
 	public void NuevoJuego(Personaje perA, Personaje perB){
@@ -114,7 +152,7 @@ public class Juego {
 		System.out.println("Escriba su nombre: ");
 		linea = teclado.next();		
 		System.out.println("Wecome to my world my yangy friend " + linea);
-		Historia_1();
+		Historia_1(perA ,perB);
 	}
 	
 	public void PantallaInicial(Personaje perA, Personaje perB){
@@ -154,10 +192,10 @@ public class Juego {
 	public static void main(String[] parametro) {
 		
 		int i ; 
-		Personaje brayan = new Personaje("Brayan", 10, 190, 11 , 0, 'A', true, false);
+		Personaje brayan = new Personaje("Brayan", 10, 190, 2 , 2, 'A', true, false);
  	    System.out.print(brayan.getEstadoActual());
  	    
- 	    Personaje brando = new Personaje("Brando", 10, 190, 6 	, 0, 'B', true, false);
+ 	    Personaje brando = new Personaje("Brando", 10, 190,3, 3, 'B', true, false);
  	    System.out.print(brando.getEstadoActual());
  	    
  	    Juego nuevoJuego = new Juego(10, 50,40) ; 

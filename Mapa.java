@@ -15,6 +15,9 @@ public class Mapa {
 		mapa[i][j].setCaracter(x);
 	}
 	
+	public char obtenerCaracter(int i, int j){
+		return mapa[i][j].getCaracter();
+	}
 
 	
 	public void ImprimirMapa(){

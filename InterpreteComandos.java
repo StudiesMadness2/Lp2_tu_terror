@@ -16,5 +16,4 @@ public class InterpreteComandos {
     	if (x == 'O' || x == 'o') return 12;
     	return -1;
     }
-
 }

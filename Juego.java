@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,7 +27,7 @@ public class Juego {
 		 
 		 
 		 gestorMapa = new GestorDeMapas();		 		
-		 for(int i = 0 ; i <3 ; i++ ){
+		 for(int i = 0 ; i <3 ; i++ ){ //Crea los mapas a utilizar
 			 listMapas.add(new Mapa());			 
 		 }
 		 int indice = 0 ;
@@ -44,19 +45,17 @@ public class Juego {
 		 
 				 		 
 	}
-	
+	//Inicializa los personajes
 	public void iniciarPersonajes(Personaje a , Personaje b){
 		personajeA = a  ; 
 		personajeB = b ; 
 		
 	}
 	public void iniciarPersonajesSecundarios(){
-		// Falta ; 
-		
+		// Falta ; 		
 	}
 	public void iniciarObjetos(){
-		// falta ; 
-		
+		// falta ; 		
 	}
 	
 	public void FinDelJuego(){
@@ -125,7 +124,7 @@ public class Juego {
 		if(!(  posibleX >= 0 && posibleX <=11 )) return false ; 
 		if(!(  posibleY >= 0 && posibleY <=15 ))return false ;
 		char c = mapa.obtenerCaracter(posibleX, posibleY) ; 
-		if (c == 'N' || c=='S' || c =='T' || c == 'E') return true ; 
+		if (c == 'N' || c=='S' || c =='T' || c == 'E' || c == 'D') return true ; 
 		if (c == 'p' || c == 'v') return false ; 		
 		return false ; 		
 	}
@@ -151,6 +150,9 @@ public class Juego {
 			b.setPosY( b.getPosY() + yy );			
 		}
 	}
+	public void PerdisteElJuego(){
+		System.out.println("Game Over");	
+	}
 	public void Tutorial(Personaje perA , Personaje perB){
 		int entero, direccion;
 		char entrada ; 
@@ -159,37 +161,40 @@ public class Juego {
 		if(entero != nextLevel){
 			while(true){
 				// Fin de nivel
+				System.out.println("VIDA " + perA.getVida());
 				if (perA.getPosY() == 15 && perB.getPosY() == 15) break ;
-			renderizador.ImprimirMapa(listMapas.get(0), perA, perB);
+				renderizador.ImprimirMapa(listMapas.get(0), perA, perB);
+				if (perA.getVida() <= 0 ) {
+				PerdisteElJuego();		
+				break ; 
+			}
 			entrada = teclado.next().charAt(0); 
 			direccion = interpreteComando.esTeclaValida(entrada);
 			System.out.println(direccion);
-			if (movimientoValido(perA , perB , direccion , listMapas.get(0))){
-				moverPersonajes(perA, perB, direccion);		
+				if (movimientoValido(perA , perB , direccion , listMapas.get(0))){
+					moverPersonajes(perA, perB, direccion);		
+				}
 			}
- 			// si el moviemenoto es valido 
-				   // si es  p   o   V no puede pasar 
-					// si es n   o    s  normal avanza
-			}						
-			Nivel_1();
+			if (perA.getVida() > 0 ) Nivel_1();
 		}
 		else{
-			System.out.println("Game Over");			 
+			PerdisteElJuego();			 
 		}
 	}
 	
-	public void Historia_1(Personaje perA , Personaje perB){		
-		String linea;
-		System.out.println("Bienvenido a Historia_1  (presione cualquier numero y enter para continuar)");		
-		linea = teclado.next();		
-		Tutorial(perA , perB);
+	public void Historia_1(Personaje perA , Personaje perB)	{		
+		String linea ; 
+		System.out.println("Bienvenido a Historia_1  ( cualquier numero y enter para continuar)");		
+		linea = teclado.nextLine();
+		Tutorial(perA , perB);			
+		
 	}
 		
 	public void NuevoJuego(Personaje perA, Personaje perB){
 		String linea;
 		System.out.println("Escriba su nombre: ");
 		linea = teclado.next();		
-		System.out.println("Wecome to my world my yangy friend " + linea);
+		System.out.println("Wecome to my world my friend " + linea);
 		Historia_1(perA ,perB);
 	}
 	
@@ -227,7 +232,7 @@ public class Juego {
 	
 	
 	
-	public static void main(String[] parametro) {
+	public static void main(String[] parametro){
 		
 		int i ; 
 		Personaje cuy1 = new Personaje("Cristobal", 10, 190, 10 , 0, 'A', true, false);

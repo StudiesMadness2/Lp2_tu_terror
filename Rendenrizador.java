@@ -1,4 +1,7 @@
 import java.io.Console;
+import java.util.Scanner;
+
+import sun.java2d.loops.ScaledBlit;
 
 public class Rendenrizador {
 	
@@ -32,31 +35,51 @@ public class Rendenrizador {
 		//mandar a otro método de impresión
 		if(flagDuo==2){
 			System.out.println("AMBOS HERMANOS PUEDEN HACER UN DUO");
-			System.out.println("DEBE PRESIONAR WSIKDDLL");
+			
+			ImprimirDuo(mapa, cuy1, cuy2);
+			if (cuy1.getVida() <= 0 ) return ;
 		}
 	}
 	//La impresion del duo
-	public void ImprimirDuo(Mapa mapa, Personaje cuy1, PersonajeSecundario cuy2){
-		//DUO - POSICION 2
-		cuy1.setPosX(5);
-		cuy1.setPosY(7);
-		cuy2.setPosX(4);
-		cuy2.setPosY(7);
+	public void ImprimirDuo(Mapa mapa, Personaje cuy1, Personaje  cuy2){
+		Scanner teclado = new Scanner(System.in);
+		System.out.println("DEBE PRESIONAR WSIKDDLL");
+		String duo1 = "WSIKDDLL" ;
+		String entrada = teclado.nextLine() ;
+		while ( !duo1.equals(entrada))  {
+			System.out.println("DEBE PRESIONAR WSIKDDLL");
+			cuy1.setVida(cuy1.getVida() -1) ;
+			if (cuy1.getVida() <= 0 ) return ; 
+			entrada = teclado.nextLine() ; 
+		}
+		//DUO - POSICION 1
+		cuy1.setPosX(8);
+		cuy1.setPosY(4);
+		cuy2.setPosX(6);
+		cuy2.setPosY(4);		
 		ImprimirMapa(mapa,cuy1,cuy2);
-		System.console().readLine();
+		entrada = teclado.nextLine() ;
+		//DUO - POSICION 2
+		cuy1.setPosX(7);
+		cuy1.setPosY(5);
+		cuy2.setPosX(7);
+		cuy2.setPosY(4);
+		ImprimirMapa(mapa,cuy1,cuy2);
+		entrada = teclado.nextLine() ;
+		//DUO - POSICION 3
+		cuy1.setPosX(7);
+		cuy1.setPosY(8);		
+		cuy2.setPosX(7);
+		cuy2.setPosY(9);
+		ImprimirMapa(mapa,cuy1,cuy2);
+		entrada = teclado.nextLine() ;
+		
 		//DUO - POSICION 3
 		cuy1.setPosX(9);
-		cuy1.setPosY(7);
-		cuy2.setPosX(8);
-		cuy2.setPosY(7);
+		cuy1.setPosY(8);		
+		cuy2.setPosX(5);
+		cuy2.setPosY(8);
 		ImprimirMapa(mapa,cuy1,cuy2);
-		System.console().readLine();
-		//DUO - POSICION 4
-		cuy1.setPosX(8);
-		cuy1.setPosY(6);
-		cuy2.setPosX(8);
-		cuy2.setPosY(10);
-		ImprimirMapa(mapa,cuy1,cuy2);
-		System.console().readLine();
+		entrada = teclado.nextLine() ;
 	}
 }

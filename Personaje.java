@@ -21,7 +21,7 @@ public class Personaje {
 	public Personaje(String nombre , int ancho , int alto , int posX, int posY, char letra, boolean visible , boolean atravesable){
 		setMainValues(nombre, ancho, alto, posX, posY, letra, visible , atravesable);
 		estados = new ArrayList<Integer>(10);
-		vida = 10 ;
+		setVida(10) ;
 		for(int i = 0 ; i<=10 ; i++) {  // Añados estados del 0 a. 9			
 			estados.add((Integer)i) ; 
 			}  
@@ -122,6 +122,14 @@ public class Personaje {
 
 	public void setAtravesable(boolean atravesable) {
 		this.atravesable = atravesable;
+	}
+
+	public static int getVida() {
+		return vida;
+	}
+
+	public static void setVida(int vida) {
+		Personaje.vida = vida;
 	}
 
 	

@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.sun.xml.internal.ws.encoding.MimeMultipartParser;
+
 public class Juego {
 	private int nextLevel ;
 	private Scanner teclado;
@@ -26,21 +28,26 @@ public class Juego {
 		 renderizador = new Rendenrizador() ;
 		 
 		 
+		 
 		 gestorMapa = new GestorDeMapas();		 		
 		 for(int i = 0 ; i <3 ; i++ ){ //Crea los mapas a utilizar
 			 listMapas.add(new Mapa());			 
 		 }
 		 int indice = 0 ;
 		 for (Mapa miMapa : listMapas){
-			 gestorMapa.crearMapa(miMapa, indice++);
+			 gestorMapa.crearMapa(miMapa, indice);
+			 miMapa.setContador(0);
+			 miMapa.setEstadoDuo(indice);
+			 indice++ ; 
 		 }
-			 // miMapa.ImprimirMapa();
+		 
+		 // miMapa.ImprimirMapa();
 		 
 		 
 		 mapaActual = new Mapa();
 		 //gestorMapa.crearMapa(mapaActual, 0);
 		 mapaActual =  listMapas.get(0);  // puede ser no necesario
-		 mapaActual.ImprimirMapa();
+	//	 mapaActual.ImprimirMapa();
 		 
 		 
 				 		 
@@ -69,31 +76,75 @@ public class Juego {
 		FinDelJuego();
 	}
 
-	public void Nivel_2(){
-		int entero;
+	public void Nivel_2(Personaje perA, Personaje perB){
+		int entero, direccion;
+		char entrada ; 
 		System.out.println("Bienvenido al Nivel_2  (escriba un numero para continuar)");
 		entero = teclado.nextInt();
+		perA.setPosX(10);
+		perA.setPosY(0);
+		perB.setPosX(5);
+		perB.setPosY(0);
+		
 		if(entero != nextLevel){
-			Historia_3();
+			while(true){
+				// Fin de nivel
+				System.out.println("TU VIDA ES" + perA.getVida());
+				if (perA.getPosY() == 15 && perB.getPosY() == 15) break ;
+				renderizador.ImprimirMapa(listMapas.get(2), perA, perB);
+				if (perA.getVida() <= 0 ) {
+				PerdisteElJuego();		
+				break ; 
+			}
+			entrada = teclado.next().charAt(0); 
+			direccion = interpreteComando.esTeclaValida(entrada);
+			System.out.println(direccion);
+				if (movimientoValido(perA , perB , direccion , listMapas.get(2))){
+					moverPersonajes(perA, perB, direccion);		
+				}
+			}
+			if (perA.getVida() > 0 )Historia_3();
 		}
 		else{
-			System.out.println("Game Over");			
+			FinDelJuego();
 		}
 	}
 	
-	public void Historia_2(){
+	public void Historia_2(Personaje perA, Personaje perB){
 		String linea;
 		System.out.println("Bienvenido a Historia_2  (presione enter para continuar)");
 		linea = teclado.next();
-		 Nivel_2();
+		Nivel_2(perA, perB);
 	}
 	
-	public void Nivel_1(){
-		int entero;
+	public void Nivel_1(Personaje perA , Personaje perB){
+		int entero, direccion;
+		char entrada ; 
 		System.out.println("Bienvenido al Nivel_1  (escriba un numero para continuar)");
 		entero = teclado.nextInt();
-		if(entero != nextLevel){
-			 Historia_2();
+		perA.setPosX(11);
+		perA.setPosY(0);
+		perB.setPosX(7);
+		perB.setPosY(0);
+		if(entero != nextLevel){			
+			while(true){
+				// Fin de nivel
+				System.out.println("TU VIDA ES" + perA.getVida());
+				if (perA.getPosY() == 15 && perB.getPosY() == 15) break ;
+				renderizador.ImprimirMapa(listMapas.get(1), perA, perB);
+				if (perA.getVida() <= 0 ) {
+				PerdisteElJuego();		
+				break ; 
+			}
+			entrada = teclado.next().charAt(0); 
+			direccion = interpreteComando.esTeclaValida(entrada);
+			System.out.println(direccion);
+				if (movimientoValido(perA , perB , direccion , listMapas.get(1))){
+					moverPersonajes(perA, perB, direccion);		
+				}
+			}
+			if (perA.getVida() > 0 )							
+			 Historia_2(perA, perB);
 		}
 		else{
 			System.out.println("Game Over");			
@@ -156,7 +207,16 @@ public class Juego {
 	public void Tutorial(Personaje perA , Personaje perB){
 		int entero, direccion;
 		char entrada ; 
-		System.out.println("Bienvenido al tutorial  (escriba un numero para continuar)");
+		System.out.println("Movimientos Jugador1 - Movimientos Jugador2");
+		System.out.println("Arriba:    W         - Arriba:     I       ");
+		System.out.println("Abajo:     K         - Abajo:      K       ");
+		System.out.println("Izquierda: A         - Izquierda:  J       ");
+		System.out.println("Derecha:   D         - Derecha:    L       ");
+		System.out.println("Especial:  Q         - Especial:   U       ");
+		System.out.println("Especial:  E         - Especial:   P       ");
+		System.out.println("");
+		System.out.println("Al llegar a D, aparecera los comandos que debe presionar\nLuego dar enter para activar la acción especial");
+		System.out.println("Cualquier numero y enter para continuar ");
 		entero = teclado.nextInt();
 		if(entero != nextLevel){
 			while(true){
@@ -175,7 +235,7 @@ public class Juego {
 					moverPersonajes(perA, perB, direccion);		
 				}
 			}
-			if (perA.getVida() > 0 ) Nivel_1();
+			if (perA.getVida() > 0 ) Nivel_1(perA, perB);
 		}
 		else{
 			PerdisteElJuego();			 
@@ -184,8 +244,10 @@ public class Juego {
 	
 	public void Historia_1(Personaje perA , Personaje perB)	{		
 		String linea ; 
-		System.out.println("Bienvenido a Historia_1  ( cualquier numero y enter para continuar)");		
-		linea = teclado.nextLine();
+		System.out.println("Bienvenido a Historia1 ");
+		System.out.println("Cristobal y su hermana eran cuyes pequeños.\nSiempre se preguntaban para qué servían, si su existencia era valiosa.\nPara responder a sus incógnitas, fueron en busca de la llama Sabia.\nUn ser lleno de respuestas.");
+		System.out.println("( cualquier numero y enter para continuar )");
+		linea = teclado.next();
 		Tutorial(perA , perB);			
 		
 	}
@@ -193,7 +255,7 @@ public class Juego {
 	public void NuevoJuego(Personaje perA, Personaje perB){
 		String linea;
 		System.out.println("Escriba su nombre: ");
-		linea = teclado.next();		
+		linea = teclado.next();	
 		System.out.println("Wecome to my world my friend " + linea);
 		Historia_1(perA ,perB);
 	}
@@ -227,7 +289,7 @@ public class Juego {
 					break;
 			}			
 		}
-		System.out.println("Espero que Regrese Pronto mi estimado LOL by Brayan XD");
+		System.out.println("Espero que Regrese Pronto mi estimado .");
 	}
 	
 	
@@ -236,10 +298,10 @@ public class Juego {
 		
 		int i ; 
 		Personaje cuy1 = new Personaje("Cristobal", 10, 190, 10 , 0, 'A', true, false);
- 	    System.out.print(cuy1.getEstadoActual());
+ 	    //System.out.print(cuy1.getEstadoActual());
  	    
  	    Personaje cuy2 = new Personaje("Hermana", 10, 190,5, 0, 'B', true, false);
- 	    System.out.print(cuy2.getEstadoActual());
+ 	    //System.out.print(cuy2.getEstadoActual());
  	    
  	    Juego nuevoJuego = new Juego(10, 50,40) ; 
  	    nuevoJuego.iniciarPersonajes(cuy1, cuy2);

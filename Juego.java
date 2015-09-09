@@ -175,7 +175,7 @@ public class Juego {
 		if(!(  posibleX >= 0 && posibleX <=11 )) return false ; 
 		if(!(  posibleY >= 0 && posibleY <=15 ))return false ;
 		char c = mapa.obtenerCaracter(posibleX, posibleY) ; 
-		if (c == 'N' || c=='S' || c =='T' || c == 'E' || c == 'D') return true ; 
+		if (c == 'N' || c=='S' || c =='T' || c == 'E' || c == 'D' || c == 'C' ||  c=='@') return true ; 
 		if (c == 'p' || c == 'v') return false ; 		
 		return false ; 		
 	}
@@ -285,7 +285,7 @@ public class Juego {
 				System.out.println("2) No");
 								
 				salida = teclado.nextInt();
-				if(salida == 1)   // Si lo cambiamo este (una linea mas arriba regresa al menu princupal)
+				if(salida == 1)   // Si lo cambiamos este (una linea mas arriba regresa al menu principal)
 					break;
 			}			
 		}

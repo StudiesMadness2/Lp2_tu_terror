@@ -4,6 +4,7 @@ public class Personaje {
     // Clase de la cual se van a heredad todos los personajes com A, B enemigos , mosutros aledaños
 
 	//Atributos  
+	private static int vida ; 
 	private  String nombre; 
 	private  int ancho ; 
 	private int alto ; 
@@ -20,6 +21,7 @@ public class Personaje {
 	public Personaje(String nombre , int ancho , int alto , int posX, int posY, char letra, boolean visible , boolean atravesable){
 		setMainValues(nombre, ancho, alto, posX, posY, letra, visible , atravesable);
 		estados = new ArrayList<Integer>(10);
+		vida = 10 ;
 		for(int i = 0 ; i<=10 ; i++) {  // Añados estados del 0 a. 9			
 			estados.add((Integer)i) ; 
 			}  

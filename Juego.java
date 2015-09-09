@@ -100,17 +100,56 @@ public class Juego {
 			System.out.println("Game Over");			
 		}
 	}
-	// X es filas y Y columna   
+	// X es filas y Y columna   	
 	public boolean movimientoValido(Personaje a ,Personaje b , int direccion , Mapa mapa){
-		int xx =0 , yy =0; 
+		int xx , yy ,posibleX , posibleY ;  
 		if( direccion == 1 || direccion == 7){ 			 
 			xx = -1 ; yy = 0 ; 
 		}else if(direccion == 2 || direccion == 8){
-		//	xx == xx+1 ; yy=0;			
+			xx = +1 ; yy = 0;			
+		}else if(direccion == 3 || direccion == 9){
+			xx = 0 ; yy = -1 ; 
+		}else if(direccion == 4 || direccion == 10){
+			xx = 0 ; yy = +1 ;			
+		}else {
+			xx = 0 ; yy = 0;
+		}
+		if(direccion <=6 ){
+			posibleX = a.getPosX()  +  xx ;
+			posibleY = a.getPosY()  +  yy ;			
 		}else{
-			
-		}			
-		return false ; 
+			posibleX = b.getPosX()  +  xx ;
+			posibleY = b.getPosY()  +  yy ;			
+		}
+		
+		if(!(  posibleX >= 0 && posibleX <=11 )) return false ; 
+		if(!(  posibleY >= 0 && posibleY <=15 ))return false ;
+		char c = mapa.obtenerCaracter(posibleX, posibleY) ; 
+		if (c == 'N' || c=='S' || c =='T' || c == 'E') return true ; 
+		if (c == 'p' || c == 'v') return false ; 		
+		return false ; 		
+	}
+	
+	public void moverPersonajes(Personaje a ,Personaje b , int direccion ){
+		int xx , yy ;
+		if( direccion == 1 || direccion == 7){ 			 
+			xx = -1 ; yy = 0 ; 
+		}else if(direccion == 2 || direccion == 8){
+			xx = +1 ; yy = 0;			
+		}else if(direccion == 3 || direccion == 9){
+			xx = 0 ; yy = -1 ; 
+		}else if(direccion == 4 || direccion == 10){
+			xx = 0 ; yy = +1 ;			
+		}else {
+			xx = 0 ; yy = 0;
+		}
+		if(direccion <=6 ){
+			a.setPosX( a.getPosX() + xx );
+			a.setPosY( a.getPosY() + yy );
+		}else {
+			b.setPosX( b.getPosX() + xx );
+			b.setPosY( b.getPosY() + yy );			
+		}
 	}
 	public void Tutorial(Personaje perA , Personaje perB){
 		int entero, direccion;
@@ -126,8 +165,7 @@ public class Juego {
 			direccion = interpreteComando.esTeclaValida(entrada);
 			System.out.println(direccion);
 			if (movimientoValido(perA , perB , direccion , listMapas.get(0))){
-				
-				
+				moverPersonajes(perA, perB, direccion);		
 			}
  			// si el moviemenoto es valido 
 				   // si es  p   o   V no puede pasar 
@@ -192,18 +230,15 @@ public class Juego {
 	public static void main(String[] parametro) {
 		
 		int i ; 
-		Personaje brayan = new Personaje("Brayan", 10, 190, 2 , 2, 'A', true, false);
- 	    System.out.print(brayan.getEstadoActual());
+		Personaje cuy1 = new Personaje("Cristobal", 10, 190, 10 , 0, 'A', true, false);
+ 	    System.out.print(cuy1.getEstadoActual());
  	    
- 	    Personaje brando = new Personaje("Brando", 10, 190,3, 3, 'B', true, false);
- 	    System.out.print(brando.getEstadoActual());
+ 	    Personaje cuy2 = new Personaje("Hermana", 10, 190,5, 0, 'B', true, false);
+ 	    System.out.print(cuy2.getEstadoActual());
  	    
  	    Juego nuevoJuego = new Juego(10, 50,40) ; 
- 	    nuevoJuego.iniciarPersonajes(brayan, brando);
- 	    nuevoJuego.PantallaInicial( brayan , brando );
- 	   
- 	    
-		
+ 	    nuevoJuego.iniciarPersonajes(cuy1, cuy2);
+ 	    nuevoJuego.PantallaInicial( cuy1 , cuy2 ); 	    	    		
     }
 
 	public Personaje getPersonajeA() {
